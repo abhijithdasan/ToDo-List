@@ -5,3 +5,4 @@ The front-end is build with
 - React + Vite
 The back-end is consist of
 - Express + MongoDB
+With the Node.js it is connecting the server
