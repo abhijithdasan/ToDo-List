@@ -22,7 +22,9 @@ app.get('/get', (req, res) => {
 
 app.put('/update/:id', (req, res) => {
     const {id} = req.params;
-    console.log(id);
+    TodoModel.findByIdAndUpdate({_id: id}, {done: true}, {new: true})
+    .then(result => res.json(result))
+    .catch(err => res.status(500).json(err)) 
 })
 
 app.post('/add', (req, res) => {
@@ -30,7 +32,7 @@ app.post('/add', (req, res) => {
     TodoModel.create({ task: task})
         .then(result => res.json(result))
         .catch(err => {
-            console.error(err); // Log the error
+            console.error(err);
             res.status(500).json({ error: 'An error occurred' });
         });
 });

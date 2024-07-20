@@ -33,7 +33,7 @@ export default function Home() {
           todos.map(todo => (
             <div className='task'> 
               <div className='checkbox' onClick={() => handleEdit(todo._id)}>
-                <BsCircleFill className='iocn'/>
+                <BsCircleFill className='icon'/>
                 <p>{todo.task}</p>
               </div>
               <div>
