@@ -2,16 +2,23 @@
 import React, { useState, useEffect } from 'react';
 import Create from './Create';
 import axios from 'axios';
+import { BsCircleFill, BsFillTrashFill } from 'react-icons/bs';
 
 export default function Home() {
   const [todos, setTodos] = useState([]);
 
   // Fetch todos from the backend
   useEffect(() => {
-    axios.get('http://localhost:3001/todos')
+    axios.get('http://localhost:3001/get')
       .then(response => setTodos(response.data))
       .catch(error => console.error('Error fetching todos:', error));
   }, []);
+
+  const handleEdit = (id) => {
+    axios.put('http://local:3001/update/'+id)
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
+  }
 
   return (
     <div className='home'>
@@ -24,8 +31,14 @@ export default function Home() {
           </div> 
         ) : (
           todos.map(todo => (
-            <div key={todo._id}> {/* Use a unique key for each todo */}
-              {todo.task}
+            <div className='task'> 
+              <div className='checkbox' onClick={() => handleEdit(todo._id)}>
+                <BsCircleFill className='iocn'/>
+                <p>{todo.task}</p>
+              </div>
+              <div>
+                <span><BsFillTrashFill className ='icon' /></span>
+              </div>
             </div>
           ))
         )
