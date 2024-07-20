@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Create from './Create';
 import axios from 'axios';
-import { BsCircleFill, BsFillTrashFill } from 'react-icons/bs';
+import { BsCircleFill, BsFillCheckCircleFill, BsFillTrashFill } from 'react-icons/bs';
 
 export default function Home() {
   const [todos, setTodos] = useState([]);
@@ -15,10 +15,25 @@ export default function Home() {
   }, []);
 
   const handleEdit = (id) => {
-    axios.put('http://local:3001/update/'+id)
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
-  }
+    axios.put(`http://localhost:3001/update/${id}`)
+      .then(() => {
+        // Update the state to reflect the changes
+        setTodos(prevTodos => prevTodos.map(todo => 
+          todo._id === id ? { ...todo, done: true } : todo
+        ));
+      })
+      .catch(err => console.error('Error updating todo:', err));
+  };
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:3001/delete/${id}`)
+      .then(() => {
+        // Update the state to reflect the changes
+        setTodos(prevTodos => prevTodos.filter(todo => 
+          todo._id !== id));
+      })
+      .catch(err => console.error('Error deleting todo:', err));
+  };
 
   return (
     <div className='home'>
@@ -33,11 +48,16 @@ export default function Home() {
           todos.map(todo => (
             <div className='task'> 
               <div className='checkbox' onClick={() => handleEdit(todo._id)}>
-                <BsCircleFill className='icon'/>
-                <p>{todo.task}</p>
+                {todo.done ? 
+                  <BsFillCheckCircleFill className='icon'></BsFillCheckCircleFill>
+                : 
+                  <BsCircleFill className='icon'/>
+                }
+                <p className={todo.done ? "line_through" : ""}>{todo.task}</p>
               </div>
               <div>
-                <span><BsFillTrashFill className ='icon' /></span>
+                <span><BsFillTrashFill className ='icon' 
+                onClick ={() => handleDelete(todo._id)}/></span>
               </div>
             </div>
           ))
