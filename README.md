@@ -1,13 +1,49 @@
-## ToDo List App 
+# TODO LIST
 
-Here it comes with both front-end and back-end 
+A full-stack ToDo List application built with React, Vite, and Express. This application allows users to create, update, and delete tasks, and is deployed on Netlify and Heroku.
 
-The front-end is build with
-- React + Vite
+## Table of Contents
 
-The back-end is consist of
-- Express + MongoDB
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup](#setup)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-With the **Node.js** it is connecting the server
+## Features
 
-It will be soon publish in vercel and links will be provided **ASAP**...!
+- **Create Tasks**: Add new tasks to your to-do list.
+- **Update Tasks**: Mark tasks as completed or uncompleted.
+- **Delete Tasks**: Remove tasks from the list.
+- **Dark Mode**: Toggle between light and dark themes.
+- **Responsive Design**: Accessible on both desktop and mobile devices.
+
+## Technologies Used
+
+- **Frontend**:
+  - React
+  - Vite
+  - Axios
+  - React Icons
+
+- **Backend**:
+  - Node.js
+  - Express
+  - MongoDB
+  - Mongoose
+
+- **Deployment**:
+  - Netlify (Frontend)
+  - Heroku (Backend)
+
+## Setup
+
+### Frontend
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone <repository-url>
+   cd todo-list
