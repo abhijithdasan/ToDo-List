@@ -45,5 +45,5 @@ A full-stack ToDo List application built with React, Vite, and Express. This app
 1. **Clone the Repository**:
 
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/abhijithdasan/ToDo-List>
    cd todo-list
