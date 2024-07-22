@@ -19,7 +19,7 @@
   }
   
   .home.dark {
-    background-color: black;
+    background-color: #0a0e0f;
     color: white;
   }
   
@@ -52,7 +52,7 @@
     border-radius: 10px;
     margin-left: 5px;
       padding: 10px;
-      background-color: black;
+      background-color: rgb(64, 175, 244);
       color: white;
       cursor: pointer;
   }
@@ -75,7 +75,7 @@
   }
   
   .task.light {
-    background-color: black;
+    background-color: #0a0e0f;
     color: white;
       
   }
