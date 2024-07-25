@@ -14,12 +14,12 @@
   }
   
   .home.light {
-    background-color: white;
+    background-color: #ececec;
     color: black;
   }
   
   .home.dark {
-    background-color: #0a0e0f;
+    background-color: #212121;
     color: white;
   }
   
@@ -75,7 +75,7 @@
   }
   
   .task.light {
-    background-color: #0a0e0f;
+    background-color: #212121;
     color: white;
       
   }
@@ -105,7 +105,7 @@
   }
   
   .icon.dark {
-      color: black;
+      color: #171717;
   }
   
   .task div span {
