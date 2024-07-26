@@ -6,7 +6,7 @@ require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
 app.use(cors({
-  origin: ["https://marx-todo.netlify.app"],
+  origin: ["http://marx-todo.netlify.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -24,32 +24,45 @@ mongoose.connect(mongoURI, {
 
 // Routes
 app.get('/api/todos', (req, res) => {
+  console.log('Received GET request to /api/todos');
   TodoModel.find()
     .then(result => res.json(result))
-    .catch(err => res.status(500).json(err));
+    .catch(err => {
+      console.error('Error retrieving todos:', err);
+      res.status(500).json(err);
+    });
 });
 
 app.put('/update/:id', (req, res) => {
+  console.log('Received PUT request to /update/:id');
   const { id } = req.params;
   const { done } = req.body;
   TodoModel.findByIdAndUpdate(id, { done: done }, { new: true })
     .then(result => res.json(result))
-    .catch(err => res.status(500).json(err));
+    .catch(err => {
+      console.error('Error updating todo:', err);
+      res.status(500).json(err);
+    });
 });
 
 app.delete('/delete/:id', (req, res) => {
+  console.log('Received DELETE request to /delete/:id');
   const { id } = req.params;
   TodoModel.findByIdAndDelete(id)
     .then(result => res.json(result))
-    .catch(err => res.status(500).json(err));
+    .catch(err => {
+      console.error('Error deleting todo:', err);
+      res.status(500).json(err);
+    });
 });
 
 app.post('/add', (req, res) => {
+  console.log('Received POST request to /add');
   const { task } = req.body;
   TodoModel.create({ task: task })
     .then(result => res.json(result))
     .catch(err => {
-      console.error(err);
+      console.error('Error adding todo:', err);
       res.status(500).json({ error: 'An error occurred' });
     });
 });
