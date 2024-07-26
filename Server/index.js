@@ -6,7 +6,7 @@ require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
 app.use(cors({
-  origin: ["http://marx-todo.netlify.app"],
+  origin: ["https://marx-todo.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -15,10 +15,7 @@ app.use(express.json());
 // Use the environment variable for MongoDB URI
 const mongoURI = process.env.MONGO_URI;
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(mongoURI)
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.error("MongoDB connection error:", err));
 
