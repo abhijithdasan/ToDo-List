@@ -2,11 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const TodoModel = require('./Models/Todo');
-require('dotenv').config(); 
+require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
 app.use(cors({
-  origin: ["http://marx-todo.netlify.app"],
+  origin: ["https://marx-todo.netlify.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
