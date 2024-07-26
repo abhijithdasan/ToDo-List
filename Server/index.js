@@ -2,22 +2,28 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const TodoModel = require('./Models/Todo');
+require('dotenv').config(); 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["http://marx-todo.netlify.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
-const mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017/test";
+// Use the environment variable for MongoDB URI
+const mongoURI = process.env.MONGO_URI;
 
 mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.error("MongoDB connection error:", err));
 
-
-app.get('/get', (req, res) => {
+// Routes
+app.get('/api/todos', (req, res) => {
   TodoModel.find()
     .then(result => res.json(result))
     .catch(err => res.status(500).json(err));
@@ -48,6 +54,8 @@ app.post('/add', (req, res) => {
     });
 });
 
-app.listen(3001, () => {
-  console.log("Server is Running on port 3001");
+// Start server
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is Running on port ${PORT}`);
 });
